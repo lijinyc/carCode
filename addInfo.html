@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>添加车辆信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="styles/public.css" />
+	</head>
+	<body>
+		<div class="content">
+			<div class="goUnlock">
+				<a href="deblocking">去解锁</a> 
+			</div>
+			<div class="clearBox">
+				<h1>添加车辆信息</h1>
+				<div class="plateNum">
+					<input type="text"  placeholder="请输入车牌号"/>
+				</div>
+				<div class="clearNumBox">
+					<input type="text"  placeholder="请输入解锁码"/>
+				</div>
+				<div class="addBtn">
+					<a href="#" />添加</a>
+				</div>
+				
+			</div>
+		</div>
+		<script src="js/ajax.js"></script>
+		<script>
+		   var btn=document.querySelector('.addBtn a');
+		   btn.onclick=function(){
+		   	   var input1=document.querySelector('.plateNum input').value;
+			   var input2=document.querySelector('.clearNumBox input').value;
+			   if(!input1 || isNaN(input1)){alert('请正确输入车牌号');return;}
+			   if(!input2 || isNaN(input2)){alert('请正确输入解锁码');return;}
+			   ajaxFun('/add',{val1:input1,val2:input2},function(data){
+			   	  if(data){
+			   	  		document.querySelector('.plateNum input').value='';
+			   	  		document.querySelector('.clearNumBox input').value='';
+			   	  		alert('您所添加的车辆:'+input1+'已存在,请重新输入！');
+			   	  }else{ 
+			   	   		alert('添加成功！');
+			   	   		document.querySelector('.plateNum input').value='';
+			   	  		document.querySelector('.clearNumBox input').value='';
+			   	   }
+			   });
+		   }
+		    function ajaxFun(url,data,succ) {
+		        ajax({
+		            url: url,
+		            data: data,
+		            method: 'get',
+		            dataType: 'json',
+		            succ: succ
+		        });
+		    };							
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>查询解锁码</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="styles/public.css"/>
+
+		<style>
+			.clearNum,.notHave{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="goUnlock">
+				<a href="addInfo">去添加</a> 
+			</div>
+			<div class="clearBox">
+				<h1>提取解锁密码</h1>
+				<div class="plateNum">
+					<input type="text" class="numInp" placeholder="请输入车牌号"/>
+					<div class="clearNum">
+						<span>解锁码:</span>
+						<input type="text" disabled="true"/>
+					</div>
+					<a href="#" class="inquiry"/>查询</a>
+				</div>
+				<div class="notHave">
+					<h3>没有查找到车辆相关信息，</h3>
+					<span>是否解锁后将相应的车辆信息添加进来</span>
+					<a href="addInfo" class="yes">是</a>
+					<a href="#" class="deny">否</a>
+				</div>
+			</div>
+		</div>	
+		<script src="js/ajax.js"></script>
+		<script>
+		  	var btn=document.querySelector('.inquiry'); 
+		  	var clearNum=document.querySelector('.clearNum'); 
+		  	var input1=clearNum.querySelector('input');
+		  	
+		  	var notHave=document.querySelector('.notHave'); 
+		  	var deny=document.querySelector('.deny'); 
+		  	var input2=document.querySelector('.numInp');
+		  	//点击查询
+		    btn.onclick=function(){    
+		    	if(!input2.value){alert('请输入车牌号');return}
+		    	if(isNaN(input2.value)){alert('请正确输入车牌号');return}
+		   		ajaxFun('/inquiry',{val:input2.value},function(data){
+		   			if(!isNaN(data)){ 
+		   				clearNum.style.display='block';
+		   				notHave.style.display='none';
+		   				input1.value=data;
+		   				//console.log('数字'+data)
+		   			}else{
+		   				clearNum.style.display='none';
+		   				notHave.style.display='block';
+		   				//console.log(data)
+		   			}		   			
+		   		});
+		    };
+		    //点击“否”
+		    deny.onclick=function(){
+		    	clearNum.style.display=notHave.style.display='none';
+		    	input2.value='';
+		    };
+		    function ajaxFun(url,data,succ) {
+		        ajax({
+		            url: url,
+		            data: data,
+		            method: 'get',
+		            dataType: 'json',
+		            succ: succ
+		        });
+		    };			
+		</script>
+	</body>
+</html>

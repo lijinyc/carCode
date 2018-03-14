@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404页面</title>
+</head>
+<body>
+  <script>
+  
+  //--------------------查询-----------------------
+  方法一:
+  var MongoClient = require('mongodb').MongoClient;
+	var DB_CONN_STR = 'mongodb://localhost:27017/kaydb'; //# 数据库为 runoob
+	var insertData = function(db, callback) {
+		//连接到表 keys
+	    var collection = db.collection('keys');
+	     //查询数据
+	    var whereStr={'plateNum':'12061036'}; 
+	    //想展现每个字段，只要在字段后面加上true就行了
+	    //var findStr={'password':true,'_id':false};
+	    collection.find(whereStr).toArray(function(err,result){
+	    	if(err){
+	    		console.log('Error'+err);return;
+	    	}
+	    	callback(result);
+	    })
+	}
+	MongoClient.connect(DB_CONN_STR, function(err, db) {
+	    console.log("连接成功！");
+	    insertData(db, function(result) {
+	        console.log(result[0].password);
+	        db.close();
+	    });
+	});
+   方法二:
+  	//查询数据
+	var whereStr={'plateNum':'12061036'}; 
+	//想展现每个字段，只要在字段后面加上true就行了
+	var findStr={'password':true,'_id':false};
+	collection.find(whereStr,findStr).toArray(function(err,result){
+		if(err){
+			console.log('Error'+err);return;
+		}
+		callback(result);
+	})
+	}
+	MongoClient.connect(DB_CONN_STR, function(err, db) {
+	    console.log("连接成功！");
+	    insertData(db, function(result) {
+	        console.log(result[0].password);
+	        db.close();
+	    });
+	});
+
+	 //--------------------添加-----------------------
+	  //插入数据
+	var MongoClient = require('mongodb').MongoClient;
+	var DB_CONN_STR = 'mongodb://localhost:27017/kaydb'; //# 数据库为 runoob
+	var insertData = function(db, callback) {
+		//连接到表 keys
+	    var collection = db.collection('keys');
+	     var data = [{"plateNum":"12061036","password":"3334"},
+	    			{"plateNum":"215363718579","password":"8579"}];
+	    collection.insert(data, function(err, result) { 
+	        if(err)
+	        {
+	            console.log('Error:'+ err);
+	            return;
+	        }     
+	        callback(result);
+	    });
+   }
+	MongoClient.connect(DB_CONN_STR, function(err, db) {
+	    console.log("连接成功！");
+	    insertData(db, function(result) {
+	        console.log(result);
+	        db.close();
+	    });
+	});
+
+  </script>
+</body>
+</html>

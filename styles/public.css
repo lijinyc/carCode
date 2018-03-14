@@ -1,0 +1,139 @@
+body,h1,h2,h3,h4,h5,h6,dl,dd,p{
+	margin: 0;
+}
+body{
+	font-size: 16px;
+	color: #fff;
+	font-family: "微软雅黑";		
+}
+ul,ol{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+img{
+	border: none;
+	vertical-align: middle;
+}
+a{
+	text-decoration: none;
+	color: #333;
+}
+body{
+	background: #20c997;
+}
+.content{
+	margin: 0 auto;
+	/*border: 1px solid;*/
+	/*width: 320px;*/
+}
+
+/*首页*/
+.optBox{
+	margin: 50px 20px;
+	text-align: center;
+}
+.btnBox{
+	margin-top: 50px;
+}
+.btnBox a,.notHave a{
+	border: 1px solid #696969;
+	padding: 10px 13px;
+	font-size: 16px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	cursor: pointer;
+
+}
+.clearBtn{
+	margin-right: 20px;
+}
+/*查询页*/ 
+.clearBox{
+	/*margin: 50px;*/
+	text-align: center;
+}
+.plateNum input,.clearNumBox input{
+	margin-top: 50px;
+	width: 217px;
+	height: 40px;
+	font-size: 30px;
+}
+.clearNum input{
+	width: 102px;
+	border: 0;
+	background: #20c997;
+	color: #007dff;
+}
+
+.clearNum span{
+	margin-right:17px;
+	line-height: 30px;
+	font-size: 26px;
+}
+.plateNum a{
+	margin-top: 50px;
+}
+.notHave {
+	line-height: 40px;
+	margin-top:40px;
+}
+.notHave h3{
+	color: red;
+}
+.notHave span{	
+	color: #007dff;
+}
+.notHave .yes{
+	margin-right: 26px;
+}
+
+.inquiry,.addBtn a{
+	display: block;
+	border: 1px solid #696969;
+	padding: 10px 22px;
+	font-size: 16px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	width: 38px;
+	margin: 0 auto;
+}
+/*添加页*/
+.addBtn a{
+	/*width:74px;*/
+}
+.addBtn{ 
+	text-align: right !important;
+	margin-top:50px;
+}
+.goUnlock{
+	padding: 10px 10px 0;
+}
+.goUnlock a{
+	text-decoration: underline;
+	color: #007dff;
+}
+
+/*最小屏幕是350时候执行(vivo x9)*/
+@media (min-width: 350px){
+	.content {
+		width: 360px;
+	}
+	.clearBox{
+		margin:30px;
+	}
+}
+/*最小屏幕是310到320时候执行(iphone 5c)*/
+@media(min-width: 310px) and (max-width: 320px){
+	.content {
+		width: 320px;
+	}
+	.clearBox{
+		margin:25px;
+	}
+	.notHave{
+		margin-top:30px;
+		width:300px;
+	}
+}
+ 
